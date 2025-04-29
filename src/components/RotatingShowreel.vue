@@ -1,7 +1,7 @@
 <template>
   <img
     class="rotating-showreel"
-    :style="{ transform: `rotate(${rotationAngle}deg)` }"
+    :style="{ transform: `rotate(-${rotationAngle}deg)` }"
     src="/showreel.svg"
     alt=""
     @mouseover="startRotation"
