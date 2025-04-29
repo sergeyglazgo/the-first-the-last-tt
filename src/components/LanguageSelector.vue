@@ -3,6 +3,7 @@
     class="language-selector"
     @mouseenter="showLanguages"
     @mouseleave="hideLanguages"
+    @click="toggleDropdown"
   >
     <div class="language-selector__icon">
       <span>&#128069;</span>
@@ -18,7 +19,7 @@
         class="language-selector__option"
         :class="{ 'language-selector__option--selected': lang === currentLanguage }"
         :style="{ animationDelay: `${index * 0.1}s` }"
-        @click="selectLanguage(lang)"
+        @click.stop="selectLanguage(lang)"
       >
         {{ lang }}
       </div>
@@ -44,6 +45,10 @@ const showLanguages = () => {
 
 const hideLanguages = () => {
   isShowingLanguages.value = false
+}
+
+const toggleDropdown = () => {
+  isShowingLanguages.value = !isShowingLanguages.value
 }
 </script>
 
