@@ -7,23 +7,15 @@
         <span class="home-content__word">AGENCY</span>
       </span>
     </h1>
-
-    <img
-      class="home-content__showreel"
-      :class="{ 'home-content__showreel--rotating': isRotating }"
-      src="/showreel.svg"
-      alt=""
-      @mouseover="startRotation"
-      @mouseout="stopRotation"
-    >
+    <RotatingShowreel />
   </div>
 </template>
 
 <script setup>
 import { ref, onBeforeUnmount, onMounted } from 'vue'
+import RotatingShowreel from './RotatingShowreel.vue'
 
 const title = ref(null)
-const isRotating = ref(false)
 
 function handleMouseMove(event) {
   if (!title.value) return
@@ -36,14 +28,6 @@ function handleMouseMove(event) {
   const offsetY = ((clientY / windowHeight) - 0.5) * 20
 
   title.value.style.transform = `translate(${offsetX}px, ${offsetY}px)`
-}
-
-const startRotation = () => {
-  isRotating.value = true
-}
-
-const stopRotation = () => {
-  isRotating.value = false
 }
 
 onMounted(() => {
@@ -87,18 +71,6 @@ onBeforeUnmount(() => {
   &__word {
     display: block;
   }
-
-  &__showreel {
-    position: absolute;
-    bottom: -100px;
-    right: 50px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-
-    &--rotating {
-      animation: rotate 6s linear infinite;
-    }
-  }
 }
 
 @media (min-width: $tablet) {
@@ -114,13 +86,6 @@ onBeforeUnmount(() => {
     &__word {
       display: inline;
     }
-
-    &__showreel {
-      width: 112px;
-      height: 112px;
-      bottom: -150px;
-      right: 140px;
-    }
   }
 }
 
@@ -133,21 +98,6 @@ onBeforeUnmount(() => {
     &__title {
       font-size: 82px;
     }
-
-    &__showreel {
-      width: 118px;
-      height: 118px;
-      right: 240px;
-    }
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
   }
 }
 </style>
