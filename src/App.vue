@@ -3,7 +3,6 @@
     <TheHeader />
     <router-view v-slot="{ Component, route }">
       <transition
-        name="page-wipe"
         mode="out-in"
         @before-leave="onBeforeLeave"
         @leave="onLeave"
@@ -40,15 +39,15 @@ const onLeave = (el, done) => {
     overlay.value.style.transform = 'translateX(0)'
   }
   setTimeout(done, animationDuration)
-};
+}
 
 const onEnter = (el, done) => {
   if (overlay.value) {
     overlay.value.style.transition = `transform ${animationDuration}ms ${easing}`
     overlay.value.style.transform = 'translateX(101%)'
   }
-  setTimeout(done, animationDuration);
-};
+  setTimeout(done, animationDuration)
+}
 
 const onAfterEnter = () => {
   if (overlay.value) {

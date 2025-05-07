@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     class="language-selector"
     @mouseenter="showLanguages"
     @mouseleave="hideLanguages"
@@ -24,7 +24,7 @@
         {{ lang }}
       </div>
     </div>
-  </div>
+  </button>
 </template>
 
 <script setup>
@@ -36,7 +36,7 @@ const isShowingLanguages = ref(false)
 
 const selectLanguage = (lang) => {
   currentLanguage.value = lang
-  isShowingLanguages.value = false
+  hideLanguages()
 }
 
 const showLanguages = () => {
@@ -61,7 +61,10 @@ const toggleDropdown = () => {
   cursor: pointer;
   width: 34px;
   height: 34px;
-  border: white solid 1px;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: 'GrtskGiga', sans-serif;
+  border: rgba(255, 255, 255, 0.5) solid 1px;
   border-radius: 50%;
 
   &__icon {
@@ -91,7 +94,7 @@ const toggleDropdown = () => {
     opacity: 0;
     transition: color $animation-speed ease;
     transform: translateX(-20px);
-    font-size: 14px;
+    text-align: start;
 
     &:hover {
       color: white;
@@ -131,7 +134,6 @@ const toggleDropdown = () => {
 
     &__option {
       padding: 5px 0;
-      font-size: 16px;
     }
   }
 }

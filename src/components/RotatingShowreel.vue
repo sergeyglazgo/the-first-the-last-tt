@@ -1,49 +1,10 @@
 <template>
   <img
     class="rotating-showreel"
-    :style="{ transform: `rotate(-${rotationAngle}deg)` }"
     src="/showreel.svg"
-    alt=""
-    @mouseover="startRotation"
-    @mouseout="stopRotation"
+    role="presentation"
   >
 </template>
-
-<script setup>
-import { ref } from 'vue'
-
-const rotationAngle = ref(0)
-let animationFrameId = null
-let lastTimestamp = null
-let isRotating = false
-
-const rotateStep = (timestamp) => {
-  if (!lastTimestamp) lastTimestamp = timestamp
-  const delta = timestamp - lastTimestamp
-  lastTimestamp = timestamp
-
-  // 70 deg/sec
-  rotationAngle.value += (delta / 1000) * 70
-
-  if (isRotating) {
-    animationFrameId = requestAnimationFrame(rotateStep)
-  }
-}
-
-const startRotation = () => {
-  if (!isRotating) {
-    isRotating = true
-    lastTimestamp = null
-    animationFrameId = requestAnimationFrame(rotateStep)
-  }
-}
-
-const stopRotation = () => {
-  isRotating = false
-  cancelAnimationFrame(animationFrameId)
-  animationFrameId = null
-}
-</script>
 
 <style scoped lang="scss">
 .rotating-showreel {
@@ -52,6 +13,12 @@ const stopRotation = () => {
   right: 50px;
   cursor: pointer;
   transition: transform 0.1s linear;
+  animation: rotate 5s linear infinite;
+  animation-play-state: paused;
+
+  &:hover {
+    animation-play-state: running;
+  }
 
   @media (min-width: $tablet) {
     width: 112px;

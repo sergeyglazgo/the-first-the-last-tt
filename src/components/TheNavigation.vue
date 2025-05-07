@@ -22,7 +22,7 @@ const emit = defineEmits(['close'])
 const navItems = [
   { name: 'who?', path: '/details' },
   { name: 'where?', path: '/details' },
-  { name: 'what?', path: '/details' }
+  { name: 'what?', path: '/details' },
 ]
 
 const closeMenu = () => {
@@ -85,7 +85,7 @@ const closeMenu = () => {
     }
 
     &__link {
-      padding: 0;
+      padding: 0 0 5px;
     }
 
     &__item {
@@ -97,17 +97,17 @@ const closeMenu = () => {
       &:nth-child(1) {
         left: 50%;
         transform: translateX(-50%);
-        bottom: 12px;
+        bottom: 8px;
       }
 
       &:nth-child(2) {
-        left: -24px;
+        left: -20px;
         top: 50%;
         transform: translateY(-50%) rotate(-90deg);
       }
 
       &:nth-child(3) {
-        right: -18px;
+        right: -12px;
         top: 50%;
         transform: translateY(-50%) rotate(90deg);
       }

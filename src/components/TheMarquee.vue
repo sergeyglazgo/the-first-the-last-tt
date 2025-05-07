@@ -9,13 +9,13 @@
       :key="index"
       :class="{
         'marquee__row--reverse': index % 2 === 1,
-        'marquee__row--flipped': index === 0
+        'marquee__row--flipped': index % 2 === 0
       }"
     >
       <div class="marquee__content">
         <span
           class="marquee__text"
-          v-for="(_, i) in 20"
+          v-for="(_, i) in 10"
           :key="i"
         >
           {{ row }}
@@ -80,7 +80,7 @@ onUnmounted(() => {
 
   &__content {
     display: inline-flex;
-    animation: marquee 70s linear infinite;
+    animation: marquee 30s linear infinite;
     will-change: transform;
   }
 
@@ -97,6 +97,8 @@ onUnmounted(() => {
 
 @media (min-width: 480px) {
   .marquee {
+    width: 220%;
+
     &__text {
       font-size: 42px;
       padding: 0 15px;
@@ -106,6 +108,8 @@ onUnmounted(() => {
 
 @media (min-width: 768px) {
   .marquee {
+    width: 160%;
+
     &__text {
       font-size: 52px;
       padding: 0 20px;
